@@ -1,0 +1,17 @@
+<aura:component implements="force:hasRecordId,flexipage:availableForAllPageTypes,force:lightningQuickAction"
+                controller="ContactActionController" access="global">
+    <aura:attribute name="count" type="Integer" />
+    <aura:attribute name="contact" type="Contact"/>
+    <aura:handler name="init" value="{!this}" action="{!c.getCount}"/>
+    <aura:handler name="change" value="{!v.count}" action="{!c.showToast}"/>
+
+    <force:recordData aura:id="forceRecordCmp"
+                      recordId="{!v.recordId}"
+                      fields="Name, AccountId"
+                      mode="VIEW"
+                      targetFields="{!v.contact}" />
+    <div class="slds-grid slds-grid--align-center slds-grid_vertical-align-center">
+        <div style="background: url(https://displayeleven.files.wordpress.com/2012/04/media-homer-arghhhh-120326-257.jpeg?w=500);
+         min-height: 400px; width: 100%; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+    </div>
+</aura:component>

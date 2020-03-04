@@ -1,0 +1,395 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" controller="remoteActionController"
+           applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <apex:slds />
+
+    <div class="slds-scope">
+        <div class="slds-page-header">
+            <div class="slds-media">
+                <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity"
+                              title="Description of icon when needed">
+                        <svg class="slds-icon slds-page-header__icon" aria-hidden="true">
+                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/custom-sprite/svg/symbols.svg#custom108')}"></use>
+                        </svg>
+                        </span>
+                </div>
+                <div class="slds-media__body">
+                    <h1 class="slds-page-header__title slds-truncate slds-align-middle"
+                        title="Rohde Corp - 80,000 Widgets">SOQL Builder</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-grid slds-gutters_medium" style="min-height: 270px">
+            <div class="slds-col slds-m-left_small">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="myObjects">Select Object:</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container parent">
+                                    <select class="slds-select" value="---None---" id="myObjects">
+                                        <option value="">Please select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-m-left_medium slds-hide" id="fieldsParent">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="myFields">Select Fields:</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select multiple="multiple" class="slds-select" id="myFields">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-col slds-m-left_medium slds-size_1-of-4 slds-hide" id="descriptionParent">
+                <button class="slds-button slds-button_success slds-m-top_large slds-is-collapsed" id="descBtn">
+                    Get description
+                </button>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label">Description:</label>
+                    <div class="slds-form-element__control">
+                        <article class="slds-tile">
+                            <div class="slds-tile__detail" id="description">
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-m-left_medium slds-m-right_medium">
+                <div class="slds-form-element">
+                    <span class="slds-form-element__label">SOQL:</span>
+                    <div class="slds-form-element__control">
+                        <span class="slds-form-element__static" id="showSOQL"></span>
+                        <div class=" slds-grid slds-gutters_small form-element__control">
+                            <div class="slds-col slds-size_1-of-3">
+                                <label class="slds-form-element__label" for="order">ORDER BY:</label>
+                                <div class="slds-select_container">
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <select class="slds-select" id="order">
+                                                <option value="">Please select</option>
+                                                <option>3</option>
+                                                <option>5</option>
+                                                <option>10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-3">
+                                <label class="slds-form-element__label" for="sort">SORTING:</label>
+                                <div class="slds-select_container">
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <select class="slds-select" id="sort">
+                                                <option value="">Please select</option>
+                                                <option>ASC</option>
+                                                <option>DESC</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-3">
+                                <label class="slds-form-element__label" for="limit">LIMIT:</label>
+                                <div class="slds-select_container">
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <select class="slds-select" id="limit">
+                                                <option value="">Please select</option>
+                                                <option>1</option>
+                                                <option>3</option>
+                                                <option>5</option>
+                                                <option>10</option>
+                                                <option>25</option>
+                                                <option>50</option>
+                                                <option>100</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-m-top_medium">
+                    <button class="slds-button slds-button_neutral" id="crtBtn">Create SOQL</button>
+                    <button class="slds-button slds-button_brand" id="exBtn">Execute SOQL</button>
+                </div>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-no-row-hover
+                slds-table_cell-buffer slds-m-top_large" id="myTable">
+        </table>
+
+        <div class="slds-grid slds-gutters slds-grid_align-center slds-m-top_large">
+            <div class="slds-button-group" role="group">
+                <button class="slds-button slds-button_neutral paginationButton" value="first" id="toFirst">First
+                </button>
+                <button class="slds-button slds-button_neutral paginationButton" value="prev" id="toPrev">Prev</button>
+                <button class="slds-button slds-button_neutral paginationButton" value="next" id="toNext">Next</button>
+                <button class="slds-button slds-button_neutral paginationButton" value="last" id="tolast">Last</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        let myObjects = document.querySelector('#myObjects');
+        let parentFields = document.querySelector('#fieldsParent');
+        let myFields = document.querySelector('#myFields');
+        let myDescription = document.querySelector('#description');
+        let parentDescription = document.querySelector('#descriptionParent');
+        let descriptionButton = document.querySelector('#descBtn');
+        let showSOQL = document.querySelector('#showSOQL');
+        let myTable = document.querySelector('#myTable');
+        let executeButton = document.querySelector('#exBtn');
+        let createSOQLButton = document.querySelector('#crtBtn');
+        let paginationButtons = document.querySelectorAll('.paginationButton');
+        let currentObject;
+        let currentFields = [];
+        let fieldsForSOQL = [];
+        let mySOQL = '';
+        let order = document.querySelector('#order');
+        let sort = document.querySelector('#sort');
+        let limit = document.querySelector('#limit');
+        let objectsQuantity = 0;
+        let offset = 0;
+
+        function setSize(size) {
+            this.setAttribute('size', size);
+        }
+
+        function showObjectFields() {
+            let obj = event.currentTarget;
+            currentObject = obj.value;
+            this.setAttribute('value', obj.value);
+            setSize.bind(this, 1);
+            this.blur();
+            getFields();
+        }
+
+        function createSelectedFieldsArray() {
+            currentFields = [currentObject];
+            fieldsForSOQL = [];
+            let collection = myFields.selectedOptions;
+            for (let i = 0; i < collection.length; i++) {
+                currentFields.push(collection[i].label);
+                fieldsForSOQL.push(collection[i].label);
+            }
+            createOptionsFromArray(fieldsForSOQL, order);
+            parentDescription.classList.remove('slds-hide');
+            descriptionButton.classList.remove('slds-is-collapsed');
+            console.log(currentFields);
+            console.log(fieldsForSOQL);
+        }
+
+        function createDescriptionTiles(result) {
+            let dl = document.createElement('dl');
+            dl.classList.add('slds-list_horizontal', 'slds-wrap');
+            for (key in result) {
+                let dt = document.createElement('dt');
+                let dd = document.createElement('dd');
+                dt.classList.add('slds-item_label', 'slds-text-color_weak', 'slds-truncate');
+                dd.classList.add('slds-item_detail', 'slds-truncate');
+                dt.textContent = key;
+                dd.textContent = result[key];
+                dl.appendChild(dt);
+                dl.appendChild(dd);
+            }
+            descriptionButton.classList.toggle('slds-is-collapsed');
+            myDescription.appendChild(dl);
+        }
+
+        function createSOQL() {
+            let orderVal = order.value;
+            let sortVal = sort.value;
+            let limitVal = limit.value;
+            mySOQL = 'SELECT ' + fieldsForSOQL.join(', ') + ' FROM ' + currentObject +
+                    ' ORDER BY ' + orderVal + ' ' + sortVal + ' LIMIT ' + limitVal + ' OFFSET ' + offset;
+            showSOQL.textContent = mySOQL;
+        }
+
+        function createTable(result) {
+            let thead = document.createElement('thead');
+            let tbody = document.createElement('tbody');
+            let trHead = createTR();
+
+            function createTR() {
+                let tr = document.createElement('tr');
+                return tr;
+            }
+
+            function createDIV(val) {
+                let div = document.createElement('div');
+                div.classList.add('slds-truncate');
+                div.textContent = val;
+                div.title = val;
+                return div;
+            }
+
+            for (let key in result[0]) {
+                if (key == 'attributes') {
+                    continue;
+                } else {
+                    let th = document.createElement('th');
+                    let div = createDIV(key);
+                    th.appendChild(div);
+                    trHead.appendChild(th);
+                }
+            }
+            result.forEach(function (obj) {
+                let trBody = createTR();
+                for (let key in obj) {
+                    if (key == 'attributes') {
+                        continue;
+                    } else {
+                        let td = document.createElement('td');
+                        let div = createDIV(obj[key]);
+                        td.appendChild(div);
+                        trBody.appendChild(td);
+                    }
+                }
+                tbody.appendChild(trBody);
+            });
+
+            trHead.classList.add('slds-text-title_caps');
+            thead.appendChild(trHead);
+            myTable.appendChild(thead);
+            myTable.appendChild(tbody);
+        }
+
+        function createOptionsFromArray(array, select) {
+            select.innerHTML = '';
+            for (let val of array) {
+                let option = document.createElement('option');
+                option.setAttribute('value', val);
+                option.textContent = val;
+                select.appendChild(option);
+            }
+        }
+
+        function doPagination() {
+            let btn = event.currentTarget;
+            let limitVal = parseInt(limit.value);
+
+            switch (btn.value) {
+                case 'first':
+                    offset = 0;
+                    createSOQL();
+                    executeSOQL();
+                    break;
+                case 'last':
+                    offset = objectsQuantity - limitVal;
+                    createSOQL();
+                    executeSOQL();
+                    break;
+                case 'prev':
+                    offset = (offset - limitVal > 0) ? (offset - limitVal) : 0;
+                    createSOQL();
+                    executeSOQL();
+                    break;
+                case 'next':
+                    offset = (offset + limitVal <= objectsQuantity - limitVal) ?
+                            (parseInt(offset + limitVal)) : (objectsQuantity - limitVal);
+                    createSOQL();
+                    executeSOQL();
+                    break;
+                default:
+                    offset = 0;
+                    createSOQL();
+                    executeSOQL();
+            }
+        }
+
+        function getObjects() {
+            Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.remoteActionController.getObjects}', function (result, event) {
+                        if (event.status) {
+                            myObjects.addEventListener('change', showObjectFields.bind(myObjects));
+                            createOptionsFromArray(result, myObjects);
+                            myObjects.removeEventListener('click', getObjects);
+                        }
+                    }
+            );
+        }
+
+        function getFields() {
+            Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.remoteActionController.getFields}',
+                    currentObject,
+                    function (result, event) {
+                        if (event.status) {
+                            objectsQuantity = result.splice(0, 1);
+                            parentFields.classList.remove('slds-hide');
+                            myFields.addEventListener('change', createSelectedFieldsArray);
+                            createOptionsFromArray(result, myFields);
+                            console.log(objectsQuantity)
+                        }
+                    }
+            );
+        }
+
+        function getDescription() {
+            Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.remoteActionController.getDescription}',
+                    currentFields,
+                    function (result, event) {
+                        if (event.status) {
+                            myDescription.innerHTML = '';
+                            createDescriptionTiles(result);
+                        }
+                    }
+            );
+        }
+
+        function executeSOQL() {
+            Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.remoteActionController.executeSOQL}',
+                    mySOQL,
+                    function (result, event) {
+                        if (event.status) {
+                            let myData = JSON.parse(result);
+                            console.log(myData)
+                            myTable.innerHTML = '';
+                            createTable(myData);
+                        }
+                    }, {escape: false}
+            );
+        }
+
+        myObjects.addEventListener('click', getObjects);
+        myObjects.addEventListener('focus', setSize.bind(myObjects, 7));
+        myObjects.addEventListener('blur', setSize.bind(myObjects, 1));
+        myFields.addEventListener('focus', setSize.bind(myFields, 7));
+        myFields.addEventListener('blur', setSize.bind(myFields, 1));
+        descriptionButton.addEventListener('click', getDescription);
+        executeButton.addEventListener('click', executeSOQL);
+        createSOQLButton.addEventListener('click', createSOQL);
+        order.addEventListener('change', createSOQL);
+        sort.addEventListener('change', createSOQL);
+        limit.addEventListener('change', createSOQL);
+        paginationButtons.forEach(function (btn) {
+           btn.addEventListener('click', doPagination);
+        });
+
+    </script>
+    </html>
+</apex:page>

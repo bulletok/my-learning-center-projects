@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global"
+                controller="DragAndDropController">
+    <aura:attribute name="chains" type="Chain__c"/>
+    <aura:attribute name="dragIndex" type="Integer"/>
+    <aura:attribute name="dropIndex" type="Integer"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
+    <c:DragAndDropHeader/>
+    <ul class="slds-accordion">
+        <li class="dropable" ondragover="{!c.allowDrop}" ondrop="{!c.handlerDrop}" data-dropId="-1">
+            DROPABLE!
+        </li>
+        <aura:iteration items="{!v.chains}" var="item" indexVar="index">
+            <li class="dragable" draggable="true" data-dragId="{!index}" ondragstart="{!c.handlerDragStart}">
+                {!item.Name}
+            </li>
+            <li class="dropable" ondragover="{!c.allowDrop}" ondrop="{!c.handlerDrop}" data-dropId="{!index}">
+                DROPABLE!
+            </li>
+        </aura:iteration>
+    </ul>
+</aura:component>

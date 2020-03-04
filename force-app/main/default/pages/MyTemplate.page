@@ -1,0 +1,21 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false"  applyBodyTag="false">
+    <apex:slds />
+
+    <div class="slds-scope">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-box slds-size_3-of-12">
+                <h2>Account:</h2>
+                <apex:insert name="leftBlock"/>
+            </div>
+            <div class="slds-col slds-box slds-size_7-of-12">
+                <h2>Contact:</h2>
+                <apex:insert name="contentBlock"/>
+            </div>
+            <div class="slds-col slds-box slds-size_2-of-12">
+                <h2>I am:</h2>
+                <apex:insert name="rightBlock"/>
+            </div>
+        </div>
+    </div>
+
+</apex:page>

@@ -1,0 +1,71 @@
+<aura:component controller="ProductTablesController">
+    <aura:attribute name='products' type='Product_Table__c[]'/>
+    <aura:handler name='init' action='{!c.doInit}' value='{!this}'/>
+	
+    <div class="slds-page-header">
+        <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Product List">
+        	Product List
+        </h1>
+    </div>
+    
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-m-horizontal_medium">
+      <thead>
+        <tr class="slds-text-title_caps">
+          <th scope="col">
+            <div class="slds-truncate" title="Product Image">IMAGE</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Product Name">NAME</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Product Title">TITLE</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Product Description">DESCRIPTION</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Product Cost">COST</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Buy"></div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" data-label="Product Image">
+            <div class="slds-truncate" title="Cloudhub">
+                <a href="javascript:void(0);">Cloudhub</a>
+              </div>
+          </th>
+          <td data-label="Product Name">
+            <div class="slds-truncate" title="Cloudhub">
+                Cloudhub
+              </div>
+          </td>
+          <td data-label="Product Title">
+            <div class="slds-truncate" title="4/14/2015">
+                4/14/2015
+              </div>
+          </td>
+          <td data-label="Product Description">
+            <div class="slds-truncate" title="Prospecting">
+                Prospecting
+              </div>
+          </td>
+          <td data-label="Product Cost">
+            <div class="slds-truncate" title="20%">
+                20%
+              </div>
+          </td>
+          <td data-label="Buy">
+            <div class="slds-truncate" title="$25k">
+                $25k
+              </div>
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+    
+</aura:component>

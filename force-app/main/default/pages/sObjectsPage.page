@@ -1,0 +1,149 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" controller="sObjectPageController"
+           applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <apex:slds />
+    <apex:form >
+        <apex:actionFunction name="getObjectField" action="{!getObjectFields}" reRender="fields"/>
+        <apex:actionFunction name="getFieldsDesc" action="{!getFieldsDescription}" reRender="desk"/>
+        <apex:actionFunction name="createMySOQL" action="{!createSOQL}" reRender="newSOQL"/>
+        <apex:actionFunction name="executeMySOQL" action="{!executeSOQL}" reRender="tableFields"/>
+        <apex:actionFunction name="save" action="{!save}" reRender="tableFields" />
+        <div class="slds-scope">
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity"
+                              title="Description of icon when needed">
+                        <svg class="slds-icon slds-page-header__icon" aria-hidden="true">
+                            <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/custom-sprite/svg/symbols.svg#custom108')}"></use>
+                        </svg>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-middle"
+                            title="Rohde Corp - 80,000 Widgets">SOQL Builder</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters_medium">
+                <div class="slds-col slds-m-left_small">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Select Object:</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <apex:selectList styleClass="slds-select" size="1" value="{!sObj}"
+                                                 onchange="getObjectField()">
+                                    <apex:selectOption itemValue="--None--"/>
+                                    <apex:selectOptions value="{!objectNames}"/>
+                                </apex:selectList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-m-left_medium">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Select Fields:</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <apex:selectList id="fields" styleClass="slds-select sFields" multiselect="true"
+                                                 onchange="getFieldsDesc()" value="{!currentFields}" size="7">
+                                    <apex:selectOptions value="{!objectFields}"/>
+                                </apex:selectList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-m-left_medium">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Description:</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <apex:selectList id="desk" styleClass="slds-select" disabled="true" size="7">
+                                    <apex:selectOptions value="{!fieldsDescription}"/>
+                                </apex:selectList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-m-left_medium slds-size_1-of-4">
+                    <div class="slds-form-element">
+                        <span class="slds-form-element__label">SOQL:</span>
+                        <div class="slds-form-element__control">
+                            <apex:pageBlock id="newSOQL">
+                                <apex:outputText styleClass="slds-form-element__static" value="{!mySOQL}"/>
+                            </apex:pageBlock>
+                            <div class="slds-grid form-element__control slds-size_1-of-2">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <span class="slds-form-element__static">Choose limit:</span>
+                                </div>
+                                <div class="slds-select_container">
+                                    <apex:selectList styleClass="slds-select" size="1" value="{!limitObj}">
+                                        <apex:selectOptions value="{!limits}"/>
+                                    </apex:selectList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slds-button slds-button_neutral" onclick="createMySOQL()">Create SOQL</button>
+                    <button class="slds-button slds-button_brand" onclick="executeMySOQL()">Execute SOQL</button>
+                </div>
+            </div>
+            <apex:pageBlock id="tableFields">
+                <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-no-row-hover
+                slds-table_cell-buffer slds-m-top_large">
+                    <thead>
+                    <tr class="slds-text-title_caps">
+                        <apex:repeat value="{!currentFields}" var="name">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Name">
+                                    <apex:commandLink value="{!name}" reRender="tableFields" action="{!changeOrder}">
+                                        <apex:param assignTo="{!order}" value="{!name}" name="order"/>
+                                    </apex:commandLink>
+                                </div>
+                            </th>
+                        </apex:repeat>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <apex:repeat value="{!exSOQL}" var="obj">
+                        <tr class="slds-hint-parent parent">
+                            <apex:repeat value="{!currentFields}" var="f">
+                                <td scope="row">
+                                    <div class="slds-truncate slds-form-element__control" title="Name">
+                                        <apex:outputField styleClass="slds-form-element__static"
+                                                          value="{!obj[f]}">
+                                            <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                                                    hideOnEdit="editButton" event="ondblclick"
+                                            />
+                                        </apex:outputField>
+                                    </div>
+                                </td>
+                            </apex:repeat>
+                        </tr>
+                    </apex:repeat>
+                    </tbody>
+                </table>
+                <div class="slds-grid slds-gutters slds-grid_align-center slds-m-top_large">
+                    <div class="slds-button-group" role="group">
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" value="First"
+                                            reRender="tableFields" action="{!fPage}" disabled="{!bool}"/>
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" value="Prev "
+                                            reRender="tableFields" action="{!prev}" disabled="{!bool}"/>
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" value="Next "
+                                            reRender="tableFields" action="{!next}" disabled="{!bool}"/>
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" value="Last "
+                                            reRender="tableFields" action="{!lPage}" disabled="{!bool}"/>
+                    </div>
+                </div>
+            </apex:pageBlock>
+        </div>
+    </apex:form>
+    <script>
+        let b = document.querySelectorAll('button');
+        b.forEach(function (btn) {
+            btn.type = 'button';
+        });
+
+    </script>
+    </html>
+</apex:page>

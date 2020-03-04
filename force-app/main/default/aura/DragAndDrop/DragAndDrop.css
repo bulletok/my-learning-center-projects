@@ -1,0 +1,19 @@
+.THIS li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 30%;
+    height: 50px;
+    font-size: 16px;
+}
+
+.THIS .dragable {
+    background-color: #005fb2;
+    color: #ff9a3c;
+}
+
+.THIS .dropable {
+    background-color: #ff9a3c;
+    color: #005fb2;
+}

@@ -1,0 +1,109 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false"
+           docType="html-5.0" controller="ProductOrderController" >
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <apex:slds /> <apex:pageMessages />
+                
+        <div class="slds-scope">
+             <apex:form >
+
+             <div class="slds-page-header slds-align_absolute-center slds-grid slds-gutters">
+                <h1 class="slds-page-header__title slds-size_1-of-2 slds-grid_align-center">
+                    Contact Information
+                </h1>
+                 <h1 class="slds-page-header__title slds-size_1-of-2 slds-grid_align-center">
+                    Product Information
+                </h1>
+            </div>
+            
+            <div class="slds-grid slds-gutters">
+              <div class="slds-col slds-grid slds-size_7-of-12 slds-grid_vertical-align-center slds-grid_align-center slds-p-vertical_medium">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="email">Email</label>
+                    <div class="slds-form-element__control">
+                        <apex:inputField value="{!Contact.Email__c}"/>
+                    </div>
+                       <label class="slds-form-element__label" for="first">First Name</label>
+                    <div class="slds-form-element__control">
+                    	<apex:inputField value="{!Contact.FirstName}"/>
+                    </div>
+                       <label class="slds-form-element__label" for="last">
+                           <abbr class="slds-required" title="required">*</abbr>Last Name</label>
+                    <div class="slds-form-element__control">
+                    	<apex:inputField value="{!Contact.LastName}"/>
+                    </div>
+                  </div>        
+              </div>
+                
+              <div class="slds-col slds-grid slds-size_5-of-12 slds-grid_vertical-align-center slds-grid_align-center slds-p-vertical_medium">
+                  <div class="slds-form-element">
+                                          
+                    <span class="slds-form-element__label">Product Name</span>
+                    <div class="slds-form-element__control">
+                    	<span class="slds-form-element__static">{!Product.Name}</span>
+                    </div>
+                      
+                    <span class="slds-form-element__label">Cost</span>
+                    <div class="slds-form-element__control">
+                    	<span class="slds-form-element__static" id="cost">{!Product.Unit_Price__c}</span>
+                    </div>
+                      
+                    <label class="slds-form-element__label" for="count">Unit Count</label>
+                    <div class="slds-form-element__control">
+                    	<apex:inputField styleClass="count" value="{!Order.Units__c}"/>
+                    </div>
+                      
+                    <span class="slds-form-element__label">Total Amount</span>
+                    <div class="slds-form-element__control">
+                    	<span class="slds-form-element__static" id="total">0</span><span class="slds-form-element__static slds-m-left_xx-small">$</span>
+                    </div> 
+              </div>
+            </div>
+         </div>
+            
+            <div class="slds-page-header slds-align_absolute-center ">
+                <div class="slds-grid slds-gutters">
+                    <button onclick="history.back()" class="slds-button slds-button_neutral">
+                        Cancel
+                    </button>
+                    <apex:commandButton action="{!save}" value="Buy"/>
+                </div>
+            </div>
+            </apex:form>
+       
+        </div>
+        
+        
+        
+        <script>
+        	window.onload = function(){
+        	    var cost = document.querySelector('#cost')
+            	var count = document.querySelector('.count');
+        		var total = document.querySelector('#total');
+        		var inputs = document.querySelectorAll('input');
+                var submit;
+                
+                for(var i = 0; i < inputs.length; i++) {
+                    if (inputs[i].type == 'submit') {
+                    	inputs[i].classList.add("slds-button", "slds-button_brand");
+                        submit = inputs[i];
+                    }
+                    else {
+                    	inputs[i].classList.add("slds-input");
+                    }
+                }
+                submit.addEventListener('click', function(){
+                    	for(var i = 0; i < inputs.length; i++) {
+                		if(inputs[i].value == null && inputs[i].type !== 'submit') {
+                            preventDefault;
+                            inputs[i].title = 'Заполните поле!';
+                        }
+                    }	
+                });
+        		count.addEventListener('keyup', function(){
+            	total.textContent = count.value * {!Product.Unit_Price__c};
+            	});
+            };                	
+        </script>
+        
+    </html>
+</apex:page>

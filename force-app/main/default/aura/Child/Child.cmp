@@ -1,0 +1,5 @@
+<aura:component controller="ChildController" access="public">
+    <aura:method name="sampleMethod" action="{!c.doAction}">
+        <aura:attribute name="func" type="Function"/>
+    </aura:method>
+</aura:component>

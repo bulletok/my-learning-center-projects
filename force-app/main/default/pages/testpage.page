@@ -1,0 +1,32 @@
+<apex:page controller="testpagecontroller">
+    <apex:form >
+
+        <apex:actionFunction name="ObjectFileds" action="{!ObjectFields}"/>
+        <APEX:PAgeBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Select Object"/>
+                    <apex:selectList multiselect="false" size="1" value="{!SelectedObject}" onchange="ObjectFileds();">
+                        <apex:selectOption itemLabel="--None--" itemValue="--None--"/>
+                        <apex:selectoptions value="{!supportedObject}" />
+                    </apex:selectlist>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Select Field"/>
+                    <apex:selectList multiselect="true" size="5" value="{!SelectedFields}">
+                        <apex:selectOption itemLabel="--None--" itemValue="--None--"/>
+                        <apex:selectoptions value="{!fieldLableAPI}" />
+                    </apex:selectlist>
+                </apex:pageBlockSectionItem>
+
+
+
+            </apex:pageblocksection>
+
+
+        </APEX:PAgeBlock>
+
+
+    </apex:form>
+</apex:page>

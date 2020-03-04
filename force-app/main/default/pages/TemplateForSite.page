@@ -1,0 +1,88 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyBodyTag="false">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <apex:slds />
+
+    <div class="slds-scope">
+
+        <div class="slds-page-header">
+            <div class="slds-media">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-opportunity"
+                          title="Description of icon when needed">
+                        <svg class="slds-icon slds-page-header__icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 xlink:href="/apexpages/slds/latest/assets/icons/standard-sprite/svg/symbols.svg#account"/>
+                        </svg>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h1 class="slds-page-header__title slds-truncate slds-align-middle"
+                        title="Rohde Corp - 80,000 Widgets">
+                        <apex:insert name="headerH1"/>
+                    </h1>
+                    <p class="slds-text-body_small slds-line-height_reset">
+                        <apex:insert name="headerP"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-grid slds-m-around--small">
+            <div class="slds-col slds-size--2-of-12">
+
+                <nav class="slds-nav-vertical" aria-label="Sub page">
+                    <div class="slds-nav-vertical__section">
+                        <h2 id="entity-header" class="slds-nav-vertical__title slds-text-title_caps">Sites</h2>
+                        <ul>
+                            <li class="slds-nav-vertical__item main">
+                                <a href="/apex/MainPage"
+                                   class="slds-nav-vertical__action"
+                                   aria-describedby="entity-header"
+                                   aria-current="page">
+                                    Main Page
+                                </a>
+                            </li>
+                            <li class="slds-nav-vertical__item info">
+                                <a href="/apex/InfoPage"
+                                   class="slds-nav-vertical__action"
+                                   aria-describedby="entity-header">
+                                    Info Page
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </div>
+            <div class="slds-col slds-size--9-of-12">
+                <apex:insert name="content"/>
+            </div>
+        </div>
+
+        <div class="slds-page-header">
+            <div class="slds-media">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-opportunity"
+                          title="Description of icon when needed">
+                        <svg class="slds-icon slds-page-footer__icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 xlink:href="/apexpages/slds/latest/assets/icons/standard-sprite/svg/symbols.svg#avatar"/>
+                        </svg>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h1 class="slds-page-header__title slds-truncate slds-align-middle"
+                        title="Rohde Corp - 80,000 Widgets">
+                        Welcome to hell !!!
+                    </h1>
+                    <p class="slds-text-body_small slds-line-height_reset">
+                        John Snow!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </html>
+</apex:page>

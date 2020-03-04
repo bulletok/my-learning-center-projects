@@ -1,0 +1,167 @@
+<aura:component controller="OnlinerController">
+    <aura:attribute name="buttons" type="String[]"/>
+    <aura:attribute name="courses" type="Object[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="wrapper">
+        <div class="container">
+
+            <div class="slds-page-header slds-grid slds-grid_align-space slds-grid_vertical-align-center">
+                <div class="slds-size--2-of-12 pointer">
+                    <img src="https://gc.onliner.by/images/logo/onliner_logo.v3.png?token=1535030300" alt="Onliner"/>
+                </div>
+                <div class="slds-size--6-of-12">
+                    <lightning:input
+                            name="inline-search-input"
+                            placeholder="Поиск в Каталоге. Например: совковая лопата "
+                            label="This is a search input with a hidden label. The label is still required for accessibility reasons"
+                            type="search"
+                            variant="label-hidden"
+                    />
+                </div>
+                <lightning:buttonGroup class="slds-size--3-of-12 slds-grid_align-end">
+                    <lightning:button label="Вход"/>
+                    <lightning:button label="" iconName="utility:like"/>
+                    <lightning:button label="" iconName="utility:dislike"/>
+                    <lightning:button label="" iconName="utility:delete"/>
+                </lightning:buttonGroup>
+            </div>
+
+            <div class="scroll slds-p-around--small">
+                <aura:iteration items="{!v.buttons}" var="b">
+                    <a href="javascript:void(0);">{!b}</a>
+                </aura:iteration>
+            </div>
+
+            <div class="headers people">
+                <div class="headers--head slds-grid slds-p-around--small slds-m-top--large
+                            slds-m-left--small slds-text-heading--large">
+                    <a href="javascript:void(0);">Люди</a>
+                </div>
+            </div>
+
+            <div class="slds-grid article-panel slds-text-align--center">
+                <div class="courses slds-col slds-p-around--xxx-small slds-size--1-of-5">
+                    <h6>Лучшие курсы валют</h6>
+                    <div class="slds-grid">
+                        <div class="slds-size--1-of-2"></div>
+                        <div class="slds-size--1-of-2">НБРБ</div>
+                    </div>
+                    <hr style="margin: 0;"/>
+                    <div class="slds-grid">
+                        <div class="slds-size--1-of-2">1 USD</div>
+                        <div class="slds-size--1-of-2">{!v.courses[4].Cur_OfficialRate}</div>
+                    </div>
+                    <div class="slds-grid">
+                        <div class="slds-size--1-of-2">1 EUR</div>
+                        <div class="slds-size--1-of-2">{!v.courses[5].Cur_OfficialRate}</div>
+                    </div>
+                    <div class="slds-grid">
+                        <div class="slds-size--1-of-2">100 RUB</div>
+                        <div class="slds-size--1-of-2">{!v.courses[16].Cur_OfficialRate}</div>
+                    </div>
+                </div>
+
+                <aura:iteration items="[1,2,3,4]" var="n">
+                    <div class="news slds-col slds-grid slds-grid--vertical slds-size--1-of-5 slds-m-left--xx-small
+                    slds-grid--align-end slds-text-body--small slds-p-vertical--x-small slds-p-horizontal--medium slds-text-align--left">
+                        <h6 class="slds-m-bottom--small">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing amend elit. Pellentesque porta ipsum.
+                        </h6>
+                        <p>354 комментариев за 16 часов</p>
+                    </div>
+                </aura:iteration>
+            </div>
+
+            <div class="article-content slds-grid slds-p-around--small slds-grid--align-spread">
+                <div class="slds-col slds-size--5-of-12">
+
+                </div>
+                <div class="slds-col slds-size--3-of-12">
+
+                </div>
+                <div class="slds-col slds-size--3-of-12">
+
+                </div>
+            </div>
+
+            <div class="article-footer slds-grid slds-align--absolute-center">
+                <button class="slds-button slds-size--1-of-6 button-yellow">
+                    Все новости о людях
+                </button>
+            </div>
+
+            <div class="headers">
+                <div class="headers--head slds-grid slds-p-horizontal--small slds-p-vertical--large slds-m-vertical--large
+                            slds-m-left--small slds-text-heading--large">
+                    <a href="javascript:void(0);">МНЕНИЯ</a>
+                </div>
+            </div>
+
+            <div class="slds-grid opinions">
+                <div class="slds-col">
+                    <div class="opinions-avatar"></div>
+                </div>
+                <aura:iteration items="[2,3,4]" var="op">
+                    <div class="slds-col slds-m-left--xxx-small">
+                        <div class="opinions-avatar"></div>
+                    </div>
+                </aura:iteration>
+            </div>
+
+            <div class="article-footer slds-grid slds-m-vertical--small slds-align--absolute-center">
+                <button class="slds-button slds-size--1-of-6 button-yellow">
+                    Все мнения
+                </button>
+            </div>
+
+            <div class="headers">
+                <div class="headers--head slds-grid slds-p-horizontal--small slds-p-vertical--large slds-m-vertical--large
+                            slds-m-left--small slds-text-heading--large">
+                    <a href="javascript:void(0);">АВТО</a>
+                </div>
+            </div>
+
+            <div class="slds-grid article-panel slds-text-align--center slds-grid_align-spread">
+                <div class="news slds-col slds-grid slds-grid--vertical slds-size--1-of-5  slds-grid--align-end
+                slds-text-body--small slds-p-vertical--x-small slds-p-horizontal--medium slds-text-align--left">
+                    <h6 class="slds-m-bottom--small">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing amend elit. Pellentesque porta ipsum.
+                    </h6>
+                    <p>258 комментариев за 16 часов</p>
+                </div>
+
+                <aura:iteration items="[1,2,3,4]" var="n">
+                    <div class="news slds-col slds-grid slds-grid--vertical slds-size--1-of-5 slds-m-left--xx-small
+                    slds-grid--align-end slds-text-body--small slds-p-vertical--x-small slds-p-horizontal--medium slds-text-align--left">
+                        <h6 class="slds-m-bottom--small">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing amend elit. Pellentesque porta ipsum.
+                        </h6>
+                        <p>258 комментариев за 16 часов</p>
+                    </div>
+                </aura:iteration>
+            </div>
+
+            <div class="article-content slds-grid slds-p-around--small slds-grid--align-spread">
+                <div class="slds-col slds-size--2-of-12">
+
+                </div>
+                <div class="slds-col slds-size--5-of-12">
+
+                </div>
+                <div class="slds-col slds-size--4-of-12">
+
+                </div>
+            </div>
+
+            <div class="article-footer slds-grid slds-align--absolute-center">
+                <button class="slds-button slds-size--1-of-6 button-yellow">
+                    Все новости об автомобилях
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+</aura:component>

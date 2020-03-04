@@ -1,0 +1,18 @@
+<aura:component>
+
+    <div class="slds-page-header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+            <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                <lightning:icon iconName="utility:warning" alternativeText="Warning!" variant="warning"/>
+            </span>
+            </div>
+            <div class="slds-media__body">
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">
+                    Drag 'n' Drop</h1>
+                <p class="slds-text-body_small slds-line-height_reset">It's will be hard!</p>
+            </div>
+        </div>
+    </div>
+
+</aura:component>

@@ -1,0 +1,16 @@
+<apex:page showHeader="true" standardStylesheets="false" sidebar="false"  applyBodyTag="false" standardController="Contact">
+    <apex:slds />
+
+    <apex:composition template="MyTemplate">
+        <apex:define name="leftBlock">
+            <c:MyComponent accId="{!Contact.AccountId}"/>
+        </apex:define>
+        <apex:define name="contentBlock">
+            <apex:detail />
+        </apex:define>
+        <apex:define name="rightBlock">
+            Right Block!
+        </apex:define>
+    </apex:composition>
+
+</apex:page>

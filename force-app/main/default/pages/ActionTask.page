@@ -1,0 +1,15 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false"
+           docType="html-5.0" controller="ActionTaskController">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <apex:slds />
+
+    <div class="slds-scope">
+        <apex:form >
+
+
+
+        </apex:form>
+    </div>
+
+    </html>
+</apex:page>

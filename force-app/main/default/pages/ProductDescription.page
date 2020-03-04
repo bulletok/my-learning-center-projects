@@ -1,0 +1,54 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false"
+           docType="html-5.0" controller="ProductDescriptionController" >
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <apex:slds />
+        <div class="slds-scope">
+            
+            <div class="slds-page-header slds-align_absolute-center">
+                <h1 class="slds-page-header__title">
+                    {!Product.Name}
+                </h1>
+            </div>
+            
+            <div class="slds-grid slds-gutters">
+              <div class="slds-col slds-grid slds-size_1-of-2 slds-grid_vertical-align-center slds-grid_align-center slds-p-vertical_small">
+                <img src='{!Product.Image_Url__c}' style="max-width: 400px;"/>
+              </div>
+                
+              <div class="slds-col slds-p-around_large slds-size_1-of-2">
+                  <h2 class="slds-text-heading_small slds-m-bottom_x-small">
+                    Amount:
+                  </h2>
+                  <p class="slds-text-body_regular slds-m-bottom_large">
+                      {!Product.Units_Avaliable__c}
+                  </p>
+                  <h2 class="slds-text-heading_small slds-m-bottom_x-small">
+                    Title:
+                  </h2>
+                  <p class="slds-text-body_regular slds-m-bottom_large">
+                      {!Product.Title__c}
+                  </p>
+                  <h2 class="slds-text-heading_small slds-m-bottom_x-small">
+                    Description:
+                  </h2>
+                  <p class="slds-text-body_regular">
+                     {!Product.Product_Description__c}
+                  </p>
+              </div>
+            </div>
+            
+            <div class="slds-page-header slds-align_absolute-center ">
+                <div class="slds-grid slds-gutters">
+                    <a href="https://dmitriy-vrp-dev-ed.lightning.force.com/apex/ProductTables" class="slds-button slds-button_neutral">
+                        To Shopping
+                    </a>
+                    <a href="https://dmitriy-vrp-dev-ed.lightning.force.com/apex/ProductOrder?id={!Product.Id}" class="slds-button slds-button_brand"> 
+                        Buy
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+        
+    </html>
+</apex:page>

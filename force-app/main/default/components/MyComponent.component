@@ -1,0 +1,13 @@
+<apex:component controller="MyComponentController">
+    <apex:attribute name="accId" description="Id from Contact" type="Id" assignTo="{!cAccId}"/>
+
+    Id : {!accId} <br/>
+    AccountName: {!CurrentAccount.Name} <br/>
+    AccountNumber: {!CurrentAccount.AccountNumber} <br/>
+    Phone: {!CurrentAccount.Phone} <br/>
+    Billing City: {!CurrentAccount.BillingCity} <br/>
+    Type: {!CurrentAccount.Type} <br/>
+
+
+
+</apex:component>

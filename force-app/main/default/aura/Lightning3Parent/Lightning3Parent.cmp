@@ -1,0 +1,20 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="items" type="List"/>
+    <aura:attribute name="onRender" type="Boolean" default="false"/>
+    <aura:handler name="myEvent" event="c:Lightning3Event" action="{!c.myAction}" phase="capture"/>
+    <aura:handler name="change" value="{!v.items}" action="{!c.changeItems}"/>
+    <aura:registerEvent name="reRender" type="c:AfterReRender"/>
+
+
+    <aura:if isTrue="{!v.onRender}">
+        <c:Lightning3Child/>
+        <lightning:layout horizontalAlign="space" multipleRows="true" class="slds-m-around--small">
+            <aura:iteration items="{!v.items}" var="item">
+                <lightning:layoutItem size="1" class="item slds-text-align--center slds-m-around--small" padding="around-small" >
+                        {!item}
+                </lightning:layoutItem>
+            </aura:iteration>
+        </lightning:layout>
+    </aura:if>
+
+</aura:component>

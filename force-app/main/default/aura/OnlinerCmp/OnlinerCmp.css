@@ -1,0 +1,115 @@
+.THIS.wrapper{
+    width: 100%;
+    height: 100%;
+    background: -o-linear-gradient(top, rgba(117,200,235,1) 26%, rgba(134,178,235,1) 100%);
+}
+
+.THIS .container {
+    margin: 0 auto;
+    max-width: 1440px;
+    height: 100%;
+}
+
+.THIS div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.THIS .button-yellow {
+    color: #000;
+    background-color: #ff9a3c;
+}
+
+.THIS .pointer {
+    cursor: pointer;
+}
+
+.THIS .scroll {
+    height: 60px;
+    max-height: 60px;
+    overflow: auto;
+    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.THIS .scroll:hover {
+    overflow-x: scroll;
+}
+
+.THIS .scroll a {
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+    text-decoration: none;
+    overflow-x: hidden;
+    transition: all 1s;
+}
+
+.THIS .scroll a:hover {
+    text-decoration: underline;
+}
+
+.THIS .news {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.THIS .news p {
+    font-size: 10px;
+    color: yellow;
+    display: none;
+}
+
+.THIS .news:hover p{
+    display: block;
+}
+
+.THIS .headers {
+
+}
+
+.THIS .headers--head a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+}
+
+.THIS .headers--head a:hover{
+    text-decoration: underline;
+}
+
+.THIS .article-panel {
+    height: 100px;
+    max-height: 100px;
+    color: azure;
+}
+
+.THIS .slds-col {
+    background-color: #706e6b;
+}
+
+.THIS .article-panel .courses {
+    background-color: #04844b;
+}
+
+.THIS .article-content .slds-col {
+    min-height: 350px;
+}
+
+.THIS .opinions .slds-col {
+    position: relative;
+    min-height: 280px;
+}
+
+.THIS .opinions .opinions-avatar{
+    position: absolute;
+    width: 20%;
+    height: 25%;
+    border-radius: 50%;
+    background-color: #0070d2;
+    top: -35px;
+    left: 40%;
+}

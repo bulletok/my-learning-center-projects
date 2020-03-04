@@ -1,0 +1,81 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false"
+           docType="html-5.0" controller="ProductTablesController" >
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <apex:slds />
+        
+        <div class="slds-scope">
+            
+            <div class="slds-m-around_medium ">
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Product List">
+                    Product List
+                    <svg aria-hidden="true" class="slds-icon">
+                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#account')}"></use>
+                    </svg>
+                </h1>
+            </div>  
+            
+            
+            <table class="slds-table slds-table_bordered slds-m-horizontal_medium slds-table_fixed-layout">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col" class="slds-size_2-of-12">
+                            <div class="slds-truncate" title="Product Image">IMAGE</div>
+                        </th>
+                        <th scope="col" class="slds-size_1-of-12">
+                            <div class="slds-truncate" title="Product Name"></div>
+                        </th>
+                        <th scope="col" class="slds-size_3-of-12">
+                            <div class="slds-truncate" title="Product Title">TITLE</div>
+                        </th>
+                        <th scope="col" class="slds-size_4-of-12">
+                            <div class="slds-truncate" title="Product Description">DESCRIPTION</div>
+                        </th>
+                        <th scope="col" class="slds-size_1-of-12">
+                            <div class="slds-truncate slds-text-align_center" title="Product Cost">COST</div>
+                        </th>
+                        <th scope="col" class="slds-size_1-of-12">
+                            <div class="slds-truncate" title="Buy"></div>
+                        </th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <apex:repeat value="{!Products}" var="prod">
+                        <tr > 
+                            <td  data-label="Product Image" class="slds-size_2-of-12">
+                                <div class="slds-truncate" >
+                                    <img src='{!prod.Image_Url__c}' />
+                                </div>
+                            </td>
+                            <td data-label="Product Name" class="slds-size_1-of-12">
+                                <div class="slds-hyphenate slds-text-align_center" title="Name">
+                                    {!prod.Name}
+                                </div>
+                            </td>
+                            <td data-label="Product Title" class="slds-size_3-of-12">
+                                <div class="slds-hyphenate slds-text-align_center" title="Title" style="white-space: pre-line;">
+                                    {!prod.Title__c}
+                                </div>
+                            </td>
+                            <td data-label="Product Description" class="slds-size_4-of-12">
+                                <div class="slds-text-align_center slds-hyphenate" title="Descriptioin" style="white-space: pre-line;">
+                                    {!prod.Product_Description__c}<a href="https://dmitriy-vrp-dev-ed.lightning.force.com/apex/ProductDescription?id={!prod.Id}" target="blank" >More</a>
+                                </div>
+                            </td>
+                            <td data-label="Product Cost" class="slds-size_1-of-12">
+                                <div class="slds-truncate slds-text-align_center" title="Cost">
+                                    {!prod.Unit_Price__c} $
+                                </div>
+                            </td>
+                            <td data-label="Buy" class="slds-size_1-of-12">
+                                <div class="slds-truncate slds-no-flex" title="Buy">
+                                    <a href="https://dmitriy-vrp-dev-ed.lightning.force.com/apex/ProductOrder?id={!prod.Id}" target="blank" class="slds-button slds-button_brand">Buy</a>
+                                </div>
+                            </td>
+                        </tr>  
+                    </apex:repeat>                    
+                </tbody>
+            </table>
+        </div>       
+    </html>
+</apex:page>

@@ -1,0 +1,29 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false"
+           docType="html-5.0" controller="MediaFirstController">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <apex:slds />
+    <apex:form >
+        <div class="slds-scope">
+            <div class="slds-grid slds-size_1-of-3">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="form-element-01">Enter URL:</label>
+                    <div class="slds-form-element__control">
+                        <apex:inputField type="url" styleClass="slds-input" value="{!media.URL__c}"/>
+                    </div>
+                    <label class="slds-form-element__label" for="form-element-01">Choose contact:</label>
+                    <div class="slds-form-element__control">
+                        <apex:selectList styleClass="slds-input" multiselect="false" value="{!media.Contact__c}">
+                            <apex:selectOptions value="{!Cons}"/>
+                        </apex:selectList>
+                    </div>
+                    <label class="slds-form-element__label" for="form-element-01">Select type:</label>
+                    <div class="slds-form-element__control">
+                        <apex:inputField styleClass="slds-input" value="{!media.Type__c}"/>
+                    </div>
+                    <apex:commandButton styleClass="slds-button slds-button_brand" action="{!save}" value="Save Media"/>
+                </div>
+            </div>
+        </div>
+    </apex:form>
+    </html>
+</apex:page>

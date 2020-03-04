@@ -1,0 +1,24 @@
+<apex:page >
+    <apex:slds />
+
+    <apex:composition template="TemplateForSite">
+        <apex:define name="headerH1">
+            Welcome to Main Page!
+        </apex:define>
+        <apex:define name="headerP">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor felis velit. Mauris nec ligula eu mauris
+            consequat iaculis non in nisl. Fusce sed vestibulum dolor. Ut tincidunt semper erat quis tincidunt.
+            Suspendisse rutrum ultricies finibus. Donec justo sem, facilisis id magna porta, mattis pellentesque libero.
+            Vivamus quis mauris ac libero malesuada condimentum. Quisque porta nibh non tincidunt rhoncus.
+        </apex:define>
+        <apex:define name="content">
+            <img src="https://avatars.mds.yandex.net/get-pdb/202366/66dc7638-bd9f-4a2c-9bb1-c77d5de83a02/orig" alt="Homer Simpson"/>
+        </apex:define>
+    </apex:composition>
+
+    <script>
+        let navItem = document.querySelector('.main');
+        navItem.classList.add('slds-is-active');
+    </script>
+
+</apex:page>

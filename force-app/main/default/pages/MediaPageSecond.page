@@ -1,0 +1,28 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false"
+           docType="html-5.0" controller="MediaSecondController">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <apex:slds />
+    <apex:form >
+        <apex:actionFunction name="getMedias" action="{!getMedias}" reRender="medias" />
+        <div class="slds-scope">
+            <div class="slds-grid slds-size_1-of-3">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="form-element-01">Choose contact:</label>
+                    <div class="slds-form-element__control">
+                        <apex:selectList styleClass="slds-input" multiselect="false" value="{!selectedContact}" onchange="getMedias()">
+                            <apex:selectOptions value="{!Cons}"/>
+                        </apex:selectList>
+                    </div>
+                    <apex:outputPanel id="medias">
+                        <div class="slds-form-element__control">
+                            <apex:selectList styleClass="slds-input" multiselect="false">
+                                <apex:selectOptions value="{!conMedias}"/>
+                            </apex:selectList>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+            </div>
+        </div>
+    </apex:form>
+    </html>
+</apex:page>

@@ -1,0 +1,25 @@
+<apex:page >
+    <apex:slds />
+
+    <apex:composition template="TemplateForSite">
+        <apex:define name="headerH1">
+            Welcome to Info Page!
+        </apex:define>
+        <apex:define name="headerP">
+            Mauris viverra urna et mauris ullamcorper, vel dictum ligula lacinia. Aliquam eget ex nec urna mollis
+            consequat. Phasellus in elementum nulla. Pellentesque dignissim magna eu dictum posuere. In quis metus vitae
+            nisl interdum viverra. Nullam accumsan justo enim, sit amet faucibus arcu gravida non. Morbi nec est diam.
+            Morbi tristique vitae mauris vel porttitor. Sed ut enim vel ipsum blandit auctor in sit amet justo.
+            Phasellus mattis ipsum id erat tempor venenatis.
+        </apex:define>
+        <apex:define name="content">
+            <img src="https://78.media.tumblr.com/tumblr_lt5csvJ6hB1r4bspvo1_1280.gif" alt="Bender Rodriguez"/>
+        </apex:define>
+    </apex:composition>
+
+    <script>
+        let navItem = document.querySelector('.info');
+        navItem.classList.add('slds-is-active');
+    </script>
+
+</apex:page>

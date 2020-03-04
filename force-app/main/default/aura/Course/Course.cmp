@@ -1,0 +1,82 @@
+<aura:component controller="CourseController">
+    <aura:attribute name="day" type="Date"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="courses" type="Object"/>
+    <aura:attribute name="rate" type="Decimal"/>
+    <aura:attribute name="curAmount" type="Decimal"/>
+    <aura:attribute name="convertedValue" type="Decimal"/>
+    <aura:attribute name="curOne" type="Decimal"/>
+    <aura:attribute name="curTwo" type="Decimal"/>
+    <aura:attribute name="uAmount" type="Decimal"/>
+    <aura:attribute name="uConvertedValue" type="Decimal"/>
+
+    <lightning:layout class="slds-page-header slds-page-header--object-home">
+        <lightning:layoutItem>
+            <lightning:icon iconName="utility:monthlyview" alternativeText="My Expenses"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <lightning:input type="date" label="Choose date:" name="date"
+                                     value="{!v.day}" onchange="{!c.doRequest}"/>
+                </div>
+            </div>
+        </lightning:layoutItem>
+        <aura:renderIf isTrue="{!v.courses}">
+            <lightning:layoutItem padding="horizontal-small">
+                <div class="dataTable">
+                    <lightning:datatable
+                            keyField="Cur_ID"
+                            data="{!v.courses}"
+                            columns="{!v.columns}"
+                            maxColumnWidth="200"/>
+                </div>
+            </lightning:layoutItem>
+        </aura:renderIf>
+    </lightning:layout>
+
+    <aura:renderIf isTrue="{!v.courses}">
+        <lightning:card title="Currency calculator (to BYN)" class="slds-m-top--small">
+            <lightning:layout class="slds-p-around_small" horizontalAlign="space">
+
+                <lightning:select label="Select currency:" name="currency" aura:id="selectCur"
+                                  value="{!v.rate}">
+                    <aura:iteration items="{!v.courses}" var="cur">
+                        <option text="{!cur.Cur_Abbreviation}" value="{!cur.Cur_OfficialRate / cur.Cur_Scale}"
+                                selected="{!cur.selected}"/>
+                    </aura:iteration>
+                </lightning:select>
+
+                <lightning:input type="number" label="Enter amount:" value="{!v.curAmount}"
+                                 onchange="{!c.convertToBYN}"/>
+
+                <lightning:input label="You get:" value="{!v.convertedValue}" readonly="true"/>
+            </lightning:layout>
+        </lightning:card>
+
+        <lightning:card title="Universal currency calculator" class="slds-m-top--small">
+            <lightning:layout class="slds-p-around--small" horizontalAlign="space">
+                <lightning:select label="From:" name="currency" aura:id="selectCur"
+                                  value="{!v.curOne}" onchange="{!c.convertAny}">
+                    <aura:iteration items="{!v.courses}" var="cur">
+                        <option text="{!cur.Cur_Abbreviation}" value="{!cur.Cur_OfficialRate / cur.Cur_Scale}"
+                                selected="{!cur.selected}"/>
+                    </aura:iteration>
+                </lightning:select>
+
+                <lightning:input type="number" label="Enter amount:" value="{!v.uAmount}"
+                                 onchange="{!c.convertAny}"/>
+
+                <lightning:select label="To:" name="currency" aura:id="selectCur"
+                                  value="{!v.curTwo}" onchange="{!c.convertAny}">
+                    <aura:iteration items="{!v.courses}" var="cur">
+                        <option text="{!cur.Cur_Abbreviation}" value="{!cur.Cur_OfficialRate / cur.Cur_Scale}"
+                                selected="{!cur.selected}" onchange="{!c.convertAny}"/>
+                    </aura:iteration>
+                </lightning:select>
+
+                <lightning:input label="You get:" value="{!v.uConvertedValue}" readonly="true"/>
+            </lightning:layout>
+        </lightning:card>
+    </aura:renderIf>
+</aura:component>

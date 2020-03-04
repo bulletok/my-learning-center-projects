@@ -1,0 +1,16 @@
+<aura:component access="public">
+    <aura:attribute name="amount" type="Integer"/>
+    <aura:handler name="reRender" event="c:AfterReRender" action="{!c.changeValue}"/>
+    <aura:registerEvent name="myEvent" type="c:Lightning3Event"/>
+
+    <div class="slds-grid">
+        <div class="slds-size--1-of-4">
+            <lightning:card title="Enter amount of blocks: (50 max)" class="slds-p-around--small">
+                <aura:set attribute="actions">
+                    <lightning:button label="Create" onclick="{!c.myAction}"/>
+                </aura:set>
+                <lightning:input label="Enter here:" name="Amount" type="number" value="{!v.amount}" max="50" min="1"/>
+            </lightning:card>
+        </div>
+    </div>
+</aura:component>
